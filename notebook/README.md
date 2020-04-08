@@ -31,4 +31,4 @@ Altought the performance is not stellar it gives a nice oveerview of how to use 
     tmp_file = get_tmpfile('word2vec100d.txt')
     _ = glove2word2vec(glove_file, tmp_file)
     model = KeyedVectors.load_word2vec_format
-```      
+```
