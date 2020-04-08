@@ -1,4 +1,4 @@
-# cnn-text-classifier-dev
+# cnn-sentence-classifier-dev
 This repository contains examples of data science CUJs resolved using [kubeflow](https://www.kubeflow.org).
 
 ![kf_pipeline](images/kfcujs.png)
