@@ -1,2 +1,4 @@
-kubeflow-metadata==0.3.1
-tensorflow-data-validation==0.21.5
+kubeflow-metadata
+pyarrow
+apache_beam
+tensorflow-data-validation
