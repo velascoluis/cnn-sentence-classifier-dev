@@ -1,0 +1,19 @@
+name: KF Pipelines - Observability framework - 01 Data drift validator
+description: Data drift validator using TensotFlow Data Validation
+
+inputs:
+- {name: xxx,                type: String,   default: 'None',        description: Values are dataset model or metric}
+
+
+
+implementation:
+  container:
+    image: gcr.io/velascoluis-test/drift_validator
+    command: [/usr/bin/python3, src/drift_validator.py]
+    args: [
+        '--xxx',                 {inputValue: xxxx},
+
+    ]
+
+
+
