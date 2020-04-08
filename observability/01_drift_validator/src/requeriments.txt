@@ -1,4 +1,5 @@
-kubeflow-metadata
-pyarrow
-apache_beam
-tensorflow-data-validation
+pyarrow==0.15
+apache_beam==2.17
+tensorflow-data-validation==0.21.2
+tfx==0.21.2
+
