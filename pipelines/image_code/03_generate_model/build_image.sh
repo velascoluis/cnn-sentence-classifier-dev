@@ -1,0 +1,1 @@
+gcloud builds submit --tag gcr.io/velascoluis-test/03_generate_model

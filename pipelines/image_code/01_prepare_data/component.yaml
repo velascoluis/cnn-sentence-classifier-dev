@@ -1,0 +1,43 @@
+name: CNN Text Classifier - Data preparation
+description: Run basic data preparation tasks on input data
+
+inputs:
+- {name: train_data_path,         type: String,   default: 'None',                        description: path of the csv file with the trainning data}
+- {name: test_data_path,          type: String,   default: 'None',                        description: path of the csv file with the test data}
+- {name: column_target_value,     type: String,   default: 'None',                        description: name of the column name (label) we want to predict - top csv column}
+- {name: column_text_value,       type: String,   default: 'None',                        description: name of the input text column name we want to analyze - top csv column}
+- {name: val_data_pct,            type: Float,    default: '0.2',                         description: train test data split percentage}
+- {name: gcp_bucket,              type: String,   default: 'None',                        description: Name of the GCP bucket with input data}
+
+
+outputs:
+- {name: json_tokenizer_path,        type: String,   description: Tokenizer serialized in JSON format}
+- {name: x_train_data_path,          type: String,   description: path of the trainning data - text}
+- {name: x_val_data_path,            type: String,   description: path of validation data - text}
+- {name: y_train_data_path,          type: String,   description: path of the trainning data - labels }
+- {name: y_val_data_path,            type: String,   description: ath of validation data - labels}
+- {name: max_sequence_lenght_path,   type: String,   description: maximun value of an observation}
+- {name: num_classes_path,           type: String,   description: calculated num of classes to predict}
+- {name: classifier_values,          type: String,   description: Serialized values to classify}
+
+implementation:
+  container:
+    image: gcr.io/velascoluis-test/01_prepare_data:latest
+    command: [/usr/bin/python3, src/01_prepare_data.py]
+    args: [
+        '--train_data_path',          {inputValue: train_data_path},
+        '--test_data_path',           {inputValue: test_data_path},
+        '--column_target_value',      {inputValue: column_target_value},
+        '--column_text_value',        {inputValue: column_text_value},
+        '--val_data_pct',             {inputValue: val_data_pct},
+        '--gcp_bucket',               {inputValue: gcp_bucket},
+        '--json_tokenizer_path',      {outputPath: json_tokenizer_path},
+        '--x_train_data_path',        {outputPath: x_train_data_path},
+        '--x_val_data_path',          {outputPath: x_val_data_path},
+        '--y_train_data_path',        {outputPath: y_train_data_path},
+        '--y_val_data_path',          {outputPath: y_val_data_path},
+        '--max_sequence_lenght_path', {outputPath: max_sequence_lenght_path},
+        '--num_classes_path',         {outputPath: num_classes_path},
+        '--classifier_values',        {outputPath: classifier_values}
+    ]
+

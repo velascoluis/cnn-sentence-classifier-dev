@@ -1,0 +1,26 @@
+name: Kubeflow - Move data to PVC
+description: Kubeflow - Move data to PVC
+inputs:
+- {name: keras_model_path,        type: String,     default: 'None',    description: Load keras model path}
+- {name: x_train_path,            type: String,     default: 'None',    description: Load x train data path}
+- {name: x_val_path,              type: String,     default: 'None',    description: Load x val data path}
+- {name: y_train_path,            type: String,     default: 'None',     description: Load y train data path}
+- {name: y_val_path,              type: String,     default: 'None',    description: Load y train data path}
+- {name: workdir,                 type: String,     default: 'None',    description: PVC workdir}
+
+
+implementation:
+  container:
+    image: gcr.io/velascoluis-test/04_move_data_pvc:latest
+    command: [/usr/bin/python3, src/04_move_data_pvc.py]
+    args: [
+      --keras_model_path,           {inputPath: keras_model_path},
+      --x_train_path,               {inputPath: x_train_path},
+      --x_val_path,                 {inputPath: x_val_path},
+      --y_train_path,               {inputPath: y_train_path},
+      --y_val_path,                 {inputPath: y_val_path},
+      --workdir,                    {inputValue: workdir}
+    ]
+
+
+

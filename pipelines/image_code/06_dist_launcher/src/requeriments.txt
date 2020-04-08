@@ -1,0 +1,6 @@
+keras==2.3.1
+pandas==0.24.1
+tensorflow==2.1.0
+numpy==1.16.6
+google-cloud-storage==1.26.0
+kubernetes==10.0.1

@@ -1,0 +1,67 @@
+name: Kubeflow - Distributed training launcher
+description: Kubeflow TFJob launcher
+inputs:
+  - {name: name, type: String}
+  - {name: namespace,type: String}
+  - {name: version,type: String}
+  - {name: activeDeadlineSeconds,type: Integer}
+  - {name: backoffLimit,type: Integer}
+  - {name: cleanPodPolicy,type: String}
+  - {name: ttlSecondsAfterFinished,type: Integer}
+  - {name: deleteAfterDone,type: bool}
+  - {name: tfjobTimeoutMinutes,type: Integer}
+  - {name: epochs,type: Integer}
+  - {name: batch_size,type: Integer}
+  - {name: workdir,type: String}
+  - {name: worker_num_replicas,type: Integer}
+  - {name: ps_num_replicas,type: Integer}
+  - {name: master,type: bool}
+  - {name: evaluator,type: bool}
+#- {name: name,                          type: String,       default: tfjob,     description: 'TFJob name.'}
+#- {name: namespace,                     type: String,       default: kubeflow,  description: 'TFJob namespace.'}
+#- {name: version,                       type: String,       default: v1,        description: 'TFJob version.'}
+#- {name: activeDeadlineSeconds,         type: Integer,      default: -1,        description: 'Specifies the duration (in seconds) since startTime during which the job can remain active before it is terminated. Must be a positive integer. This setting applies only to pods where restartPolicy is OnFailure or Always.'}
+#- {name: backoffLimit,                  type: Integer,      default: -1,        description: 'Number of retries before marking this job as failed.'}
+#- {name: cleanPodPolicy,                type: String,       default: Running,   description: 'Defines the policy for cleaning up pods after the TFJob completes.'}
+#- {name: ttlSecondsAfterFinished,       type: Integer,      default: -1,        description: 'Defines the TTL for cleaning up finished TFJobs.'}
+#- {name: deleteAfterDone,               type: bool,         default: 'True',    description: 'Whether to delete the tfjob after it is finished.'}
+#- {name: tfjobTimeoutMinutes,           type: Integer,      default: 1440,      description: 'Time in minutes to wait for the TFJob to complete.'}
+#- {name: epochs,                        type: Integer,      default: 10,        description: 'Epochs'}
+#- {name: batch_size,                    type: Integer,      default: 1000,      description: 'Batch'}
+#- {name: workdir,                       type: String,       default: 'None',    description: 'Workdir'}
+#- {name: worker_num_replicas,           type: Integer,      default: 1,         description: 'Worker Num replicas'}
+#- {name: ps_num_replicas,               type: Integer,      default: 0,         description: 'Parameter server Num replicas'}
+#- {name: master,                        type: bool,         default: 'False',    description: 'Master in use'}
+#- {name: evaluator,                     type: bool,         default: 'False',    description: 'Evaluator in use'}
+
+implementation:
+  container:
+    image: gcr.io/velascoluis-test/06_dist_launcher:latest
+    command: [/usr/bin/python3, src/06_dist_launcher.py]
+    args: [
+      --name,                       {inputValue: name},
+      --namespace,                  {inputValue: namespace},
+      --version,                    {inputValue: version},
+      --activeDeadlineSeconds,      {inputValue: activeDeadlineSeconds},
+      --backoffLimit,               {inputValue: backoffLimit},
+      --cleanPodPolicy,             {inputValue: cleanPodPolicy},
+      --ttlSecondsAfterFinished,    {inputValue: ttlSecondsAfterFinished},
+      --deleteAfterDone,            {inputValue: deleteAfterDone},
+      --tfjobTimeoutMinutes,        {inputValue: tfjobTimeoutMinutes},
+      --epochs,                     {inputValue: epochs},
+      --batch_size,                 {inputValue: batch_size},
+      --workdir,                    {inputValue: workdir},
+      --worker_num_replicas,        {inputValue: worker_num_replicas},
+      --ps_num_replicas,            {inputValue: ps_num_replicas},
+      --master,                     {inputValue: master},
+      --evaluator,                  {inputValue: evaluator}
+    ]
+
+
+
+
+
+
+
+
+

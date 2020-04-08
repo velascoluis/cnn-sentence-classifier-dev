@@ -1,0 +1,42 @@
+name: CNN Text Classifier - Generate model
+description: Generate keras dnn model
+
+inputs:
+- {name: num_conv_layers,          type: Integer,      default: 'None',    description: Num convolutions}
+- {name: maxpool_strides,          type: Integer,     default: 'None',    description: Max pool strides}
+- {name: dropout,                  type: Float,      default: 'None',    description: DNN droput regularizer value}
+- {name: filter_sizes,             type: String,     default: 'None',    description: Filter sizes}
+- {name: num_filters,              type: Integer,     default: 'None',    description: Num Filters}
+- {name: embbeding_dim,            type: Integer,    default: 'None',    description: dimension of the dense vectors}
+- {name: input_emb_matrix_path,    type: String,     default: 'None',    description: Load emb matrix path}
+- {name: vocabulary_size_path,     type: String,     default: 'None',    description: Load vocabulary size path}
+- {name: max_sequence_lenght_path, type: String,     default: 'None',    description: Load sequence length path}
+- {name: num_classes_path,         type: String,     default: 'None',    description: Load num classes path}
+
+
+outputs:
+- {name: output_keras_model_path,        type: String,   description: Output keras model}
+
+
+implementation:
+  container:
+    image: gcr.io/velascoluis-test/03_generate_model:latest
+    command: [/usr/bin/python3, src/03_generate_model.py]
+    args: [
+      '--num_conv_layers',             {inputValue:  num_conv_layers},
+      '--maxpool_strides',              {inputValue:  maxpool_strides},
+      '--dropout',                     {inputValue:  dropout},
+      '--filter_sizes',                {inputValue:  filter_sizes},
+      '--num_filters',                 {inputValue:  num_filters},
+      '--embbeding_dim',               {inputValue:  embbeding_dim},
+      '--input_emb_matrix_path',       {inputPath:   input_emb_matrix_path},
+      '--vocabulary_size_path',        {inputPath:   vocabulary_size_path},
+      '--max_sequence_lenght_path',    {inputPath:   max_sequence_lenght_path},
+      '--num_classes_path',            {inputPath:   num_classes_path},
+      '--output_keras_model_path',     {outputPath:  output_keras_model_path}
+    ]
+
+
+
+
+

@@ -1,0 +1,1 @@
+kubeflow-metadata==0.3.1

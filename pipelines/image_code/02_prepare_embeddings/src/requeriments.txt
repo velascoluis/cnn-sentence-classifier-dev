@@ -1,0 +1,7 @@
+keras==2.3.1
+pandas==0.24.1
+tensorflow==2.1.0
+numpy==1.16.6
+gcsfs==0.2.3
+google-cloud-storage==1.26.0
+gensim==3.2.0

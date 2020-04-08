@@ -1,0 +1,32 @@
+name: CNN Text Classifier - Embedding preparation
+description: Generate the embeddings matrix for dense vectors
+
+inputs:
+- {name: gcp_bucket,            type: String,     default: 'None',                                 description: Name of the GCP bucket with input data}
+- {name: num_words,             type: Integer,    default: '20000',                           description: the maximum number of words to keep based on word frequency}
+- {name: w2v_model_path,        type: String,     default: 'None',                            description: pre-generated w2v gensim model}
+- {name: embbeding_dim,         type: Integer,    default: '100',                             description: dimension of the dense vectors}
+- {name: json_tokenizer_path,   type: String,     default: 'None',                            description: Tokenizer object to load}
+
+
+
+outputs:
+- {name: output_emb_matrix_path,        type: String,   description: Emb matrix}
+- {name: vocabulary_size_path,          type: String,   description: Vocabulary size}
+
+
+implementation:
+  container:
+    image: gcr.io/velascoluis-test/02_prepare_embbedings:latest
+    command: [/usr/bin/python3, src/02_prepare_embbedings.py]
+    args: [
+      '--gcp_bucket',               {inputValue: gcp_bucket},
+      '--num_words',                {inputValue: num_words},
+      '--w2v_model_path',           {inputValue: w2v_model_path},
+      '--embbeding_dim',            {inputValue: embbeding_dim},
+      '--json_tokenizer_path',      {inputPath:  json_tokenizer_path},
+      '--output_emb_matrix_path',   {outputPath: output_emb_matrix_path},
+      '--vocabulary_size_path',     {outputPath: vocabulary_size_path}
+    ]
+
+

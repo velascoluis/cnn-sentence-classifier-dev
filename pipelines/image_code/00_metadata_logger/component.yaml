@@ -1,0 +1,23 @@
+name: CNN Text Classifier - Metadata logger
+description: Metadata logger for dataset, metric or models
+
+inputs:
+- {name: log_type,                type: String,   default: 'None',        description: Values are dataset model or metric}
+- {name: workspace-name,          type: String,   default: 'None',        description: Name of the workspace}
+- {name: run-name,                type: String,   default: 'None',        description: Name of the run}
+- {name: input_values,            type: dict,     default: 'None',        description: Dict with input values}
+
+
+implementation:
+  container:
+    image: gcr.io/velascoluis-test/00_metadata_logger:latest
+    command: [/usr/bin/python3, src/00_metadata_logger.py]
+    args: [
+        '--log_type',                 {inputValue: log_type},
+        '--workspace-name',           {inputValue: workspace-name},
+        '--run-name',                 {inputValue: run-name},
+        '--input_values',             {inputValue: input_values}
+    ]
+
+
+

@@ -1,0 +1,18 @@
+name: CNN Text Classifier - Deploy model in KFServing
+description: Deploy model in KFServing
+
+inputs:
+- {name: namespace,               type: String,     default: 'None',    description: kubeflow namespace}
+- {name: trained_model_path,      type: String,     default: 'None',    description: Load trained model data path}
+
+
+
+implementation:
+  container:
+    image: gcr.io/velascoluis-test/07_deploy_model:latest
+    command: [/usr/bin/python3, src/07_deploy_model.py]
+    args: [
+      '--namespace',                 {inputValue: namespace},
+      '--trained_model_path',        {inputValue: trained_model_path}
+    ]
+

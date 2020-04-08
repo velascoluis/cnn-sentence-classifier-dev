@@ -1,0 +1,31 @@
+name: CNN Text Classifier - Train model
+description: Train keras model - single thread
+
+inputs:
+- {name: keras_model_path,        type: String,     default: 'None',    description: Load keras model path}
+- {name: x_train_path,            type: String,     default: 'None',    description: Load x train data path}
+- {name: x_val_path,              type: String,     default: 'None',    description: Load x val data path}
+- {name: y_train_path,            type: String,    default: 'None',    description: Load y train data path}
+- {name: y_val_path,              type: String,     default: 'None',    description: Load y train data path}
+- {name: epochs,                  type: Integer,     default: 'None',    description: Epochs}
+- {name: batch_size,              type: Integer,     default: 'None',    description: Batch}
+
+
+outputs:
+- {name: output_trained_model_path,        type: String,   description: Output trained keras model}
+
+implementation:
+  container:
+    image: gcr.io/velascoluis-test/05_train_model:latest
+    command: [/usr/bin/python3, src/05_train_model.py]
+    args: [
+      '--keras_model_path',           {inputPath: keras_model_path},
+      '--x_train_path',               {inputPath: x_train_path},
+      '--x_val_path',                 {inputPath: x_val_path},
+      '--y_train_path',               {inputPath: y_train_path},
+      '--y_val_path',                 {inputPath: y_val_path},
+      '--epochs',                     {inputValue: epochs},
+      '--batch_size',                 {inputValue: batch_size},
+      '--output_trained_model_path',  {outputPath: output_trained_model_path}
+    ]
+
