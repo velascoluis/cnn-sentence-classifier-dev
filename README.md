@@ -1,5 +1,5 @@
 # cnn-text-classifier-dev
-This repository contains examples of data science CUJs resolved using kubeflow.
+This repository contains examples of data science CUJs resolved using [kubeflow](https://www.kubeflow.org).
 
 ![kf_pipeline](images/kfcujs.png)
 
@@ -16,6 +16,7 @@ In particular, as of now, this repo features:
         - Using hardware accelerators
     - Metadata component to recalibrate models based on data drift/skew using TFDV + MLMD
 ---    
+This repo uses kubeflow v1.0 deployed on Google Kubernetes Engine
 The idea is to reproduce a canonical workflow in Machine Learning:
 
 | **Step**        | Kubeflow comp           | This repo  |
