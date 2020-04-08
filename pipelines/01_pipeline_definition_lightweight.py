@@ -20,44 +20,7 @@ def prepare_data_train(num_words: int, train_data_path: str, test_data_path: str
                        y_val_data_path: OutputPath(str), json_tokenizer_path: OutputPath(str),
                        ) -> NamedTuple('PrepareDataOutput', [('max_sequence_length', int), ('num_classes', int),
                                                              ('classifier_values', list)]):
-    """Data preparation for training and validation
-        Performs the following data transformations
-        Load the data and drop rows where NaN values
-        De-duplicates rows (this is added for compliance with AI Plarform current restrictions
-        Calculates the classifier values as the different values on the label column
-        Generates validation data as a configurable % of the train data (e.g. 0.2)
-        Create a tokenizer a fits the texts for training
-        Serializes the tokenizer as a json file for later user
-        Tokenizes both train and validation
-        Generates X_train padding the tokenized sequences
-        Generates X_validation padding the tokenizes sequences (padding to a maximun of the longest sequence on train dataset)
 
-       Parameters
-       ----------
-       num_words: vocabulary size (e.g. 2000)
-       train_data_path: csv file location with train the data to load
-       test_data_path: csv file location with test data to load
-       column_target_value: Name of the label column
-       column_text_value: Name of the free text column
-       val_data_pct: % for data split validation and test
-       json_tokenizer_path: path for serializing the json file with the token fittings
-
-       Returns
-       -------
-       list
-          X_train, X_val: data/categorical labels trainning
-          ytrain/y_val: data/categorical labels validation
-          :rtype: object
-          :param num_words:
-          :param train_data_path:
-          :param test_data_path:
-          :param column_target_value:
-          :param column_text_value:
-          :param val_data_pct:
-          :param json_tokenizer_path:
-          :param gcp_bucket:
-          :return:
-       """
     # Packages must be imported within the function
     import pandas as pd
     import io

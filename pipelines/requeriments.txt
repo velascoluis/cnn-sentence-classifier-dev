@@ -1,1 +1,2 @@
 kfp==0.2.5
+kubeflow-metadata==0.3.1

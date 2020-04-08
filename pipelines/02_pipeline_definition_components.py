@@ -115,7 +115,7 @@ def deploy_model_operation_par(namespace, workdir):
 
 def main(params):
     print('Generating and executing CNN Text classifier pipeline ...')
-    print('https://kf10rc4.endpoints.velascoluis-test.cloud.goog/_/pipeline/#/experiments')
+
 
     train_data_path = params.train_data_path
     test_data_path = params.test_data_path
