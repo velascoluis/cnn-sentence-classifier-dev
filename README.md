@@ -16,7 +16,7 @@ In particular, as of now, this repo features:
         - Using hardware accelerators
     - Metadata component to recalibrate models based on data drift/skew using TFDV + MLMD
 ---    
-This repo uses kubeflow v1.0 deployed on Google Kubernetes Engine
+This repo uses kubeflow v1.0 deployed on Google Kubernetes Engine  
 The idea is to reproduce a canonical workflow in Machine Learning:
 
 | **Step**        | Kubeflow comp           | This repo  |
