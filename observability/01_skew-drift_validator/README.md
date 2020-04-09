@@ -1,6 +1,7 @@
 # KF Pipelines - Observability framework - Data drift validator
 
-This component exposes TFDV skew and drift validation as a component a reusable component
+This component exposes TFDV skew and drift validation as a component a reusable component.
+For detailed information, check the AnomalyDetection notebook in this folder
 
 ### Input data
 Interface of the component:
