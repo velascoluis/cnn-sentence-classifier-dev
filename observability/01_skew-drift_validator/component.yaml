@@ -1,0 +1,32 @@
+name: KF Pipelines - Observability framework - 01 Data drift validator
+description: Data skew-drift validator using TensotFlow Data Validation
+
+inputs:
+- {name: mode,                      type: String,   default: 'None',        description: skew or drift}
+- {name: gcp_bucket,                type: String,   default: 'None',        description: GCP bucket with data}
+- {name: control_set_path,          type: String,   default: 'None',        description: Path with control data in GCP}
+- {name: treatment_set_path,        type: String,   default: 'None',        description: Path with treatment data in GCP}
+- {name: feature_list,              type: String,   default: 'None',        description: Features to evaluate}
+- {name: Linf_value,                type: float,   default: 'None',        description: L-inf norm value for evaluation}
+
+outputs:
+- {name: anomalies,                 type: String,   description: Anomalies proto output}
+
+
+implementation:
+  container:
+    image: gcr.io/velascoluis-test/skew_drift_validator
+    command: [/usr/bin/python3, src/skew_drift_validator.py]
+    args: [
+        '--mode',                 {inputValue: mode},
+        '--gcp_bucket',           {inputValue: gcp_bucket},
+        '--control_set_path',     {inputValue: control_set_path},
+        '--treatment_set_path',   {inputValue: treatment_set_path},
+        '--feature_list',         {inputValue: feature_list},
+        '--Linf_value',           {inputValue: Linf_value}
+
+    ]
+
+
+
+

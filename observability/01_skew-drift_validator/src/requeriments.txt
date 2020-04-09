@@ -2,4 +2,5 @@ pyarrow==0.15
 apache_beam==2.17
 tensorflow-data-validation==0.21.2
 tfx==0.21.2
+gcsfs==0.2.3
 
