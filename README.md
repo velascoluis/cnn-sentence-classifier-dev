@@ -25,4 +25,4 @@ The idea is to reproduce a canonical workflow in Machine Learning:
 | Hyperparameter tuning      | Jupyter notebooks + katib + fairing      |   `notebook` folder Section 03 |
 | Simple test pipeline | pipelines      |    `pipelines` folder. Pipeline def 01 |
 | Production pipeline | pipelines, metadata, TFJob Operator, KFServing      |    `pipelines` folder. Pipeline def 02 |
-| Others: functional observability (data-drift) | pipelines, metadata, TFDV*      |    `observability` folder. Component 01 |             
+| Others: functional observability/production utils  | pipelines, metadata, TFDV*      |    `observability` folder. Component 01 |             
