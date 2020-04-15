@@ -36,8 +36,11 @@ def deploy_model(namespace,trained_model_path):
     isvc = V1alpha2InferenceService(api_version=api_version,
                                     kind=constants.KFSERVING_KIND,
                                     metadata=client.V1ObjectMeta(
-                                    name=inference_service_name, namespace=namespace),
+                                    name=inference_service_name, annotations={'sidecar.istio.io/inject': 'false'},namespace=namespace),
                                     spec=V1alpha2InferenceServiceSpec(default=default_endpoint_spec))
+
+#velascoluis: sidecar is disables by https://github.com/knative/serving/issues/6829
+#make sure trained model path star with file:// or gs://
 
     KFServing = KFServingClient()
     logging.info('STEP: DEPLOY MODEL (2/2) Creating inference service..')
