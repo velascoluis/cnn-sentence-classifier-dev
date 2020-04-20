@@ -10,7 +10,7 @@ As the [documentation cites](https://www.kubeflow.org/docs/pipelines/sdk/build-c
 
 ---
 Now, in order to maximize effiency in ML development there are a few considerations when designing a reusable component:
-
+In general components should be complementary and composable (on the same level of abstraction, e.g. not possible to generate a component of components) , not simple wrappers.
 **Granularity:**  
 - How "big" should be the component packaged logic? There is no definitive answer to this, but I can think of some guidelines and trade-offs to consider.  
  At the very least for initial deployments I think we should partition the code/components following the build-train-deploy pattern.
