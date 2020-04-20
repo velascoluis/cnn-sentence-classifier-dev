@@ -13,7 +13,41 @@ Now, in order to maximize effiency in ML development there are a few considerati
 
 **Granularity:**  
 - How "big" should be the component packaged logic? There is no definitive answer to this, but I can think of some guidelines and trade-offs to consider.  
- At the very least I think we should partition the code following the build-train-deploy sequence.The build phase is probably the one we can sub-partition more, in particular the data preparation steps and feature generation, it will be very helpful to come up with a catalog of pre-generated data prep components.  
+ At the very least for initial deployments I think we should partition the code/components following the build-train-deploy pattern.
+ The build phase is probably the one we can sub-partition more, in particular the data preparation steps and feature generation.
+ On the other hand, it will add little value to encapsulate simple logic into to components, for instance, loading data from GCS or performing some simple data cleansing.   
+ 
+ SIMPLE DEPLOYMENT
+ 
+ **Components proposed for the build phase***
+ **Components proposed for the train phase***
+ **Components proposed for the deploy phase***
+ 
+ 
+ 
+ CICD PIPELINES
+  - LaunchHPLRO
+  - LaunchNASLRO
+  - CheckModelCandidates
+  - PromotoToProd
+  - PromotoToProdCanary
+  - ChangeCanaryConfig
+  - SignatureGen
+  -ExplainModel
+ ***Orchestrated experiment***
+ ***Decomissions components***
+ ***Ongoing checks***
+ - Evaluators
+    - FeatureQuality
+    - Schema change
+    - Skew 
+    - Drfit 
+    - Accuracy 
+ - GoldenRetrainerLauncher (distributed, GPU options ...)
+ - Metrics collector
+
+ 
+   
 @to-do  
 **Interface design** 
 - Input/output parameters using input/outputPath vs input/outputValue vs external storage.   
