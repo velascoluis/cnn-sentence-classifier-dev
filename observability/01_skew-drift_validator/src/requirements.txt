@@ -1,4 +1,4 @@
-pyarrow==0.15
+pyarrow==0.15.1
 apache_beam==2.17
 tensorflow-data-validation==0.21.2
 tfx==0.21.2
